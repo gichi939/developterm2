@@ -21,6 +21,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('develop', 'Admin\DevelopController@index');
      Route::get('develop/edit', 'Admin\DevelopController@edit');
      Route::post('develop/edit', 'Admin\DevelopController@update');
+     Route::get('develop/delete', 'Admin\DevelopController@delete');
 });
 
 Auth::routes();

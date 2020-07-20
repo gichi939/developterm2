@@ -86,4 +86,13 @@ class DevelopController extends Controller
 
       return redirect('admin/develop');
   }
+  
+  public function delete(Request $request)
+  {
+      // 該当するNews Modelを取得
+      $develop = Develop::find($request->id);
+      // 削除する
+      $develop->delete();
+      return redirect('admin/develop/');
+  }  
 }
