@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('develop/create', 'Admin\DevelopController@add');
      Route::post('develop/create', 'Admin\DevelopController@create'); 
+     Route::get('develop', 'Admin\DevelopController@index');
+     Route::get('develop/edit', 'Admin\DevelopController@edit');
+     Route::post('develop/edit', 'Admin\DevelopController@update');
 });
 
 Auth::routes();
