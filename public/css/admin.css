@@ -1,7 +1,6 @@
 body {
   background-repeat: no-repeat;
-  background-position: center;
-  background-color: #000;
+  background-color: #EEEEEE;
   color: #fff;
 }
 
@@ -28,14 +27,19 @@ body {
 }
 
 .login-box {
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #fff;
+  color: #000000;
 }
 
 .login-header {
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: rgba(0, 0, 0, 0);
 }
 
 .login-body {
   background-color: rgba(0, 0, 0, 0.25);
+}
+
+.container .row {
+  color: #000000;
 }
 
