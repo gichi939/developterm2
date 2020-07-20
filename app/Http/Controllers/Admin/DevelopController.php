@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Develop;
 
+use App\History;
+
+use Carbon\Carbon;
+
 class DevelopController extends Controller
 {
     public function add()
@@ -83,6 +87,11 @@ class DevelopController extends Controller
       unset($develop_form['_token']);
       // 該当するデータを上書きして保存する
       $develop->fill($develop_form)->save();
+      
+      $history = new History;
+        $history->develop_id = $develop->id;
+        $history->edited_at = Carbon::now();
+        $history->save();
 
       return redirect('admin/develop');
   }
