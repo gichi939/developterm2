@@ -40,23 +40,23 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-                            
-                            <ul class="navbar-nav mr-100px">
+                        <ul class="navbar-nav mr-100px">
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('会員登録') }}</a></li>
+                        </ul>
+                        
+                        <ul class="navbar-nav mr-100px">
                             <li><a class="nav-link" href="{{ action('Admin\DevelopController@add') }}">{{ __('新規作成') }}</a></li>
                         </ul>
-
+                        
                         <ul class="navbar-nav mr-100">
                             <li><a class="nav-link" href="{{ action('Admin\DevelopController@index') }}">{{ __('一覧画面') }}</a></li>
-                        </ul>
-
                         </ul>
 
                         <!-- Right Side Of Navbar -->
                         <ul class="navbar-nav ml-auto">
                             
                             <!-- Authentication Links -->
-                        {{-- ログインしていなかったらログイン画面へのリンクを表示 --}}
+                        {{-- ログインしていなかったらログイン画面への��ンクを表示 --}}
                         @guest
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         {{-- ログインしていたらユーザー名とログアウトボタンを表示 --}}
@@ -79,7 +79,6 @@
                                 </div>
                             </li>
                             @endguest
-                            
                         </ul>
                     </div>
                 </div>

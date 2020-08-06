@@ -41,7 +41,7 @@ class DevelopController extends Controller
       $develop->fill($form);
       $develop->save();
 
-      return redirect('admin/develop/create');
+      return redirect('/');
   }  
   
   public function index(Request $request)

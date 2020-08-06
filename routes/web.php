@@ -29,3 +29,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'NewsController@index');
+
+Route::resource('comments', 'CommentsController', ['only' => ['store']]);

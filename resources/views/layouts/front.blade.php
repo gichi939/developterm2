@@ -24,7 +24,7 @@
         {{-- Laravel標準で用意されているCSSを読み込みます --}}
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
-        <link href="{{ asset('css/front.css') }}" rel="stylesheet">
+        <link href="{{ secure_asset('css/front.css') }}" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -40,16 +40,16 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav mr-auto">
-                            
-                            <ul class="navbar-nav mr-100px">
+                        <ul class="navbar-nav mr-100">
+                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('会員登録') }}</a></li>
+                        </ul>
+                        
+                        <ul class="navbar-nav mr-100px">
                             <li><a class="nav-link" href="{{ action('Admin\DevelopController@add') }}">{{ __('新規作成') }}</a></li>
                         </ul>
-
+                        
                         <ul class="navbar-nav mr-100">
                             <li><a class="nav-link" href="{{ action('Admin\DevelopController@index') }}">{{ __('一覧画面') }}</a></li>
-                        </ul>
-
                         </ul>
 
                         <!-- Right Side Of Navbar -->
@@ -79,7 +79,6 @@
                                 </div>
                             </li>
                             @endguest
-                            
                         </ul>
                     </div>
                 </div>

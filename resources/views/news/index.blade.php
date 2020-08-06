@@ -42,6 +42,41 @@
                                 <div class="body mt-3">
                                     {{ str_limit($post->body, 1500) }}
                                 </div>
+                                
+                                <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
+                                @csrf
+                            
+                                <input
+                                    name="post_id"
+                                    type="hidden"
+                                    value="{{ $post->id }}"
+                                >
+                            
+                                <div class="form-group">
+                                    <label for="body">
+                                        コメント
+                                    </label>
+                            
+                                    <textarea
+                                        id="body"
+                                        name="body"
+                                        class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
+                                        rows="4"
+                                    >{{ old('body') }}</textarea>
+                                    @if ($errors->has('body'))
+                                        <div class="invalid-feedback">
+                                            {{ $errors->first('body') }}
+                                        </div>
+                                    @endif
+                                </div>
+                            
+                                <div class="mt-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        コメントする
+                                    </button>
+                                </div>
+                            </form>
+                                
                             </div>
                             <div class="image col-md-6 text-right mt-4">
                                 @if ($post->image_path)
@@ -54,6 +89,6 @@
                 @endforeach
             </div>
         </div>
-    </div>
+        
     </div>
 @endsection

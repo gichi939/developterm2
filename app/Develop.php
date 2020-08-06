@@ -19,4 +19,9 @@ class Develop extends Model
       return $this->hasMany('App\History');
 
     }
+    
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
