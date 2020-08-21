@@ -22,6 +22,11 @@
                         <div class="col-md-6">
                             <p class="body mx-auto">{{ str_limit($headline->body, 650) }}</p>
                         </div>
+                        @foreach($comments as $comment)
+                                <div class="body mt-3">
+                                    {{ str_limit($comment->body, 1500) }}
+                                </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -42,40 +47,17 @@
                                 <div class="body mt-3">
                                     {{ str_limit($post->body, 1500) }}
                                 </div>
-                                
-                                <form class="mb-4" method="POST" action="{{ route('comments.store') }}">
-                                @csrf
-                            
-                                <input
-                                    name="post_id"
-                                    type="hidden"
-                                    value="{{ $post->id }}"
-                                >
-                            
-                                <div class="form-group">
-                                    <label for="body">
-                                        コメント
-                                    </label>
-                            
-                                    <textarea
-                                        id="body"
-                                        name="body"
-                                        class="form-control {{ $errors->has('body') ? 'is-invalid' : '' }}"
-                                        rows="4"
-                                    >{{ old('body') }}</textarea>
-                                    @if ($errors->has('body'))
-                                        <div class="invalid-feedback">
-                                            {{ $errors->first('body') }}
-                                        </div>
-                                    @endif
+                                <ul class="navbar-nav mr-100">
+                                    <li><a class="comment-link" href="{{ action('Admin\CommentController@add') }}">{{ __('コメントする') }}</a></li>
+                                </ul>
+                @foreach($comments as $comment)
+                                <div class="body mt-3">
+                                    {{ str_limit($comment->body, 1500) }}
                                 </div>
-                            
-                                <div class="mt-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        コメントする
-                                    </button>
-                                </div>
-                            </form>
+                @endforeach
+                    <hr color="#c0c0c0">
+                @endforeach
+                                <!--\Debugbar::info($comment);-->
                                 
                             </div>
                             <div class="image col-md-6 text-right mt-4">
@@ -85,10 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    <hr color="#c0c0c0">
-                @endforeach
+                    <!--<hr color="#c0c0c0">-->
             </div>
         </div>
-        
     </div>
 @endsection

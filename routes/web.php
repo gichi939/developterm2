@@ -24,10 +24,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('develop/delete', 'Admin\DevelopController@delete');
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
+     Route::get('comment/create', 'Admin\CommentController@add');
+     Route::post('comment/create', 'Admin\CommentController@create');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'NewsController@index');
 
-Route::resource('comments', 'CommentsController', ['only' => ['store']]);
+// Route::resource('comments', 'CommentsController', ['only' => ['store']]);

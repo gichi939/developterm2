@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title', '新規作成')
+@section('title', 'コメント投稿')
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-8 mx-auto">
-                <h2>新規作成</h2>
-                <form action="{{ action('Admin\DevelopController@create') }}" method="post" enctype="multipart/form-data">
+                <h2>コメントを投稿</h2>
+                <form action="{{ action('Admin\CommentController@create') }}" method="post" enctype="multipart/form-data">
 
                     @if (count($errors) > 0)
                         <ul>
@@ -16,21 +16,9 @@
                         </ul>
                     @endif
                     <div class="form-group row">
-                        <label class="col-md-2" for="title">都道府県</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" name="title" value="{{ old('title') }}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-md-2" for="body">本文</label>
                         <div class="col-md-10">
                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-2" for="title">画像</label>
-                        <div class="col-md-10">
-                            <input type="file" class="form-control-file" name="image">
                         </div>
                     </div>
                     {{ csrf_field() }}

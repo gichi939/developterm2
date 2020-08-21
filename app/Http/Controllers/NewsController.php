@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\HTML;
 
 // 追記
 use App\Develop;
+use App\Comment;
 
 class NewsController extends Controller
 {
@@ -19,9 +20,10 @@ class NewsController extends Controller
         } else {
             $headline = null;
         }
-
+        $comments = Comment::all()->sortByDesc('updated_at');
+// var_dump($comments[0]);
         // news/index.blade.php ファイルを渡している
         // また View テンプレートに headline、 posts、という変数を渡している
-        return view('news.index', ['headline' => $headline, 'posts' => $posts]);
+        return view('news.index', ['headline' => $headline, 'posts' => $posts, 'comments' => $comments ]);
     }
 }
