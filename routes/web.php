@@ -25,8 +25,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-     Route::get('comment/create', 'Admin\CommentController@add');
+     Route::get('comment/create/{id}', 'Admin\CommentController@add');
      Route::post('comment/create', 'Admin\CommentController@create');
+     Route::get('comment/delete', 'Admin\CommentController@delete');
 });
 
 Auth::routes();

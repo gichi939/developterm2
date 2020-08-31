@@ -2,36 +2,6 @@
 
 @section('content')
     <div class="container">
-        <hr color="#c0c0c0">
-        @if (!is_null($headline))
-            <div class="row">
-                <div class="headline col-md-10 mx-auto">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="caption mx-auto">
-                                <div class="image">
-                                    @if ($headline->image_path)
-                                        <img src="{{ asset('storage/image/' . $headline->image_path) }}">
-                                    @endif
-                                </div>
-                                <div class="title p-2">
-                                    <h1>{{ str_limit($headline->title, 70) }}</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <p class="body mx-auto">{{ str_limit($headline->body, 650) }}</p>
-                        </div>
-                        @foreach($comments as $comment)
-                                <div class="body mt-3">
-                                    {{ str_limit($comment->body, 1500) }}
-                                </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @endif
-        <hr color="#c0c0c0">
         <div class="row">
             <div class="posts col-md-8 mx-auto mt-3">
                 @foreach($posts as $post)
@@ -47,24 +17,35 @@
                                 <div class="body mt-3">
                                     {{ str_limit($post->body, 1500) }}
                                 </div>
-                                <ul class="navbar-nav mr-100">
-                                    <li><a class="comment-link" href="{{ action('Admin\CommentController@add') }}">{{ __('コメントする') }}</a></li>
-                                </ul>
-                @foreach($comments as $comment)
-                                <div class="body mt-3">
-                                    {{ str_limit($comment->body, 1500) }}
-                                </div>
-                @endforeach
-                    <hr color="#c0c0c0">
-                @endforeach
-                                <!--\Debugbar::info($comment);-->
-                                
-                            </div>
-                            <div class="image col-md-6 text-right mt-4">
+                                <div class="image col-md-6 text-right mt-4">
                                 @if ($post->image_path)
                                     <img src="{{ asset('storage/image/' . $post->image_path) }}">
                                 @endif
+                                </div>
+                                <ul class="navbar-nav mr-100">
+                                    <li><a class="comment-link" href="{{ action('Admin\CommentController@add',$post->id) }}">{{ __('コメントする') }}</a></li>
+                                </ul>
+                    <hr color="#c0c0c0">
+                                <p>コメント</p>
+                                
+                @foreach($comments as $comment)
+                    @if ($comment->develop_id==$post->id)
+                        <div class="body mt-3">
+                            {{ str_limit($comment->body, 1500) }}
+                            
+                             <div>
+                                
+                                <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除</a>
                             </div>
+                        </div>
+                        <hr color="#c0c0c0">
+                    @endif
+                @endforeach
+                @endforeach
+                                
+                                
+                            </div>
+                            
                         </div>
                     </div>
                     <!--<hr color="#c0c0c0">-->

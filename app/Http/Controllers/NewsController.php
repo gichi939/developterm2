@@ -15,15 +15,25 @@ class NewsController extends Controller
     {
         $posts = Develop::all()->sortByDesc('updated_at');
 
-        if (count($posts) > 0) {
-            $headline = $posts->shift();
-        } else {
-            $headline = null;
-        }
+        // if (count($posts) > 0) {
+        //     $headline = $posts->shift();
+        // } else {
+        //     $headline = null;
+        // }
         $comments = Comment::all()->sortByDesc('updated_at');
-// var_dump($comments[0]);
+        
         // news/index.blade.php ファイルを渡している
         // また View テンプレートに headline、 posts、という変数を渡している
-        return view('news.index', ['headline' => $headline, 'posts' => $posts, 'comments' => $comments ]);
+        return view('news.index', ['posts' => $posts, 'comments' => $comments ]);
     }
+    
+//     public function delete(Request $request)
+//   {
+//       // 該当するNews Modelを取得
+//       $comments = Comment::find($request->id);
+//       \Debugbar::info($comments);
+//       // 削除する
+//       $comments->delete();
+//       return redirect('/');
+//   }  
 }

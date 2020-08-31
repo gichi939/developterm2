@@ -8,9 +8,12 @@ use App\Comment;
 
 class CommentController extends Controller
 {
-    public function add()
+    public function add($id)
   {
-      return view('admin.comment.create');
+    // \Debugbar::info($id);
+    // var_dump($id);
+      return view('admin.comment.create', ['develop_id' => $id]);
+      // return view('admin.comment.create');
   }
   
   public function create(Request $request)
@@ -21,7 +24,6 @@ class CommentController extends Controller
     
     $comment = new Comment;
     $form = $request->all();
-    
     // フォームから送信されてきた_tokenを削除する
     unset($form['_token']);
     
@@ -31,4 +33,14 @@ class CommentController extends Controller
     
     return redirect('/');
     }
+    
+    public function delete(Request $request)
+  {
+      \Debugbar::info($request);
+      // 該当するNews Modelを取得
+      $comments = Comment::find($request->id);
+      // 削除する
+      $comments->delete();
+      return redirect('/');
+  }  
 }
