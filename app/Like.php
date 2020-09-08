@@ -11,7 +11,7 @@ class Like extends Model
 
   public function reply()
   {
-    return $this->belongsTo(Reply::class);
+    return $this->belongsTo(Develop::class);
   }
 
   public function user()

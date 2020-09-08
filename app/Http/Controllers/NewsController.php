@@ -27,13 +27,4 @@ class NewsController extends Controller
         return view('news.index', ['posts' => $posts, 'comments' => $comments ]);
     }
     
-//     public function delete(Request $request)
-//   {
-//       // 該当するNews Modelを取得
-//       $comments = Comment::find($request->id);
-//       \Debugbar::info($comments);
-//       // 削除する
-//       $comments->delete();
-//       return redirect('/');
-//   }  
 }

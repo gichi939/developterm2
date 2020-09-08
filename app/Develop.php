@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+
+use App\Like;
 
 class Develop extends Model
 {
@@ -16,7 +19,7 @@ class Develop extends Model
     
     public function histories()
     {
-      return $this->hasMany('App\History');
+        return $this->hasMany('App\History');
 
     }
     
@@ -24,4 +27,25 @@ class Develop extends Model
     {
         return $this->hasMany('App\Comment');
     }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class, 'develop_id');
+    }
+    
+    public function is_liked_by_auth_user()
+  {
+    $id = Auth::id();
+
+    $likers = array();
+    foreach($this->likes as $like) {
+      array_push($likers, $like->user_id);
+    }
+
+    if (in_array($id, $likers)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

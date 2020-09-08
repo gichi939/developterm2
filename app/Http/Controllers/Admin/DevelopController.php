@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Develop;
+use App\Like;
 
 use App\History;
 
@@ -103,5 +105,39 @@ class DevelopController extends Controller
       // 削除する
       $develop->delete();
       return redirect('admin/develop/');
-  }  
+  }
+  
+  public function like($id)
+  {
+    // \Debugbar::info($id);
+    $like = new Like;
+    $like->user_id = Auth::id();
+    $like->develop_id = $id;
+    $like->save();
+    // Like::create([
+    //   'develop_id' => $id,
+    //   'user_id' => Auth::id(),
+    // ]);
+
+    session()->flash('success', 'You Liked the Reply.');
+    return redirect()->back();
+  }
+
+  /**
+   * 引数のIDに紐づくリプライにUNLIKEする
+   *
+   * @param $id リプライID
+   * @return \Illuminate\Http\RedirectResponse
+   */
+  public function unlike($id)
+  {
+    $like = Like::where('develop_id', $id)->where('user_id', Auth::id())->first();
+    $like->delete();
+
+    session()->flash('success', 'You Unliked the Reply.');
+
+    return redirect()->back();
+  }
+  
+  
 }

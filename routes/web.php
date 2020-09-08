@@ -22,6 +22,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('develop/edit', 'Admin\DevelopController@edit');
      Route::post('develop/edit', 'Admin\DevelopController@update');
      Route::get('develop/delete', 'Admin\DevelopController@delete');
+     Route::get('/develop/like/{id}', 'Admin\DevelopController@like')->name('reply.like');
+     Route::get('/develop/unlike/{id}', 'Admin\DevelopController@unlike')->name('reply.unlike');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
@@ -35,5 +37,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/', 'NewsController@index');
+
 
 // Route::resource('comments', 'CommentsController', ['only' => ['store']]);
