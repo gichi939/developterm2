@@ -22,7 +22,7 @@ class NewsController extends Controller
         // }
         $comments = Comment::all()->sortByDesc('updated_at');
         
-        $comment_num = Comment::develop_id;
+        \Debugbar::info($posts);
         
         // news/index.blade.php ファイルを渡している
         // また View テンプレートに headline、 posts、という変数を渡している
