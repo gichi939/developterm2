@@ -22,9 +22,25 @@ class NewsController extends Controller
         // }
         $comments = Comment::all()->sortByDesc('updated_at');
         
+        $comment_num = Comment::develop_id;
+        
         // news/index.blade.php ファイルを渡している
         // また View テンプレートに headline、 posts、という変数を渡している
         return view('news.index', ['posts' => $posts, 'comments' => $comments ]);
     }
+    
+    public function details()
+    {
+        $posts = Develop::all()->sortByDesc('updated_at');
+        
+        $comments = Comment::all()->sortByDesc('updated_at');
+        return view('news.details', ['posts' => $posts, 'comments' => $comments ]);
+    }
+    
+    // public function Prefectures()
+    // {
+    //     $prefs = config('pref');
+    //     return view('news.details')->with(['prefs' => $prefs]);
+    // }
     
 }

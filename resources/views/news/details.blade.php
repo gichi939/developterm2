@@ -1,23 +1,20 @@
 @extends('layouts.front')
 
 @section('content')
-    <div class="container">
+
+<div class="container">
     <div class="row">
-      <div class="col-md-8 offset-md-2 col-12 px-3">
+      <div class="col-md-10 offset-md-1 col-12 px-3">
         @foreach($posts as $post)
-        <div class="row text-center py-3">
-            <div class="col-md-12 col-12">
-                @if ($post->image_path)
-                    <img src="{{ asset('storage/image/' . $post->image_path) }}"style="width: 100%;" class="rounded">
-                @else
-                    <img src="https://www.shoshinsha-design.com/wp-content/uploads/2016/10/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2016-10-05-0.41.12.png"style="width: 100%;" class="rounded">
-                @endif
-            </div>
-        </div>
-        <!--<p>{{$loop->index}}</p>-->
         <div class="row border-bottom border-dark py-3">
-          <!-- 文章 -->
+          <!-- 写真 -->
           <div class="col-md-12 col-12">
+              <img src="https://cdnspacemarket.com/uploads/attachments/611407/image.jpg?fit=crop&width=600&height=300&bg-color=9c9c9c" style="width: 100%;" class="rounded">
+          </div>
+          
+          
+           文章 
+          <div class="col-md-8 col-12">
             <div class="row">
             <div class="col-md-6 text-left">
                 <p class="date">
@@ -49,34 +46,42 @@
               </div>
             </div>
 
-            <!--<h6 class="py-2"> コメント一覧 </h6>-->
+            <h6 class="py-2"> コメント一覧 </h6>
             <hr color="#c0c0c0">
+            @foreach($comments as $comment)
+                    @if ($comment->develop_id==$post->id)
+                        <div class="row">
+                            <div class="col-md-6 text-left">
+                            {{ str_limit($comment->body, 1500) }}
+                            </div>
+                            
+                            <div class="col-md-6 text-right">
+                                <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除</a>
+                            </div>
+                        </div>
+                        <hr color="#c0c0c0">
+                    @endif
+            @endforeach
+
 
 
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-8">
                 <button class="btn btn-light text-dark"
                     data-toggle="collapse"
-                    data-target="#example-{{$loop->index}}"
+                    data-target="#example-1"
                     aria-expand="false"
-                    aria-controls="example-{{$loop->index}}">コメントを読む({{ $comment_num->count() }})>></button>
-                <div class="collapse py-3" id="example-{{$loop->index}}">
+                    aria-controls="example-1">もっと読む>></button>
+                <div class="collapse py-3" id="example-1">
                    <div class="card card-body"> 
-                    @foreach($comments as $comment)
-                            @if ($comment->develop_id==$post->id)
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        {{ str_limit($comment->body, 1500) }}
-                                        <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除</a>
-                                    </div>
-                                </div>
-                                <!--<hr color="#c0c0c0">-->
-                            @endif
-                    @endforeach
+                  <p> 029【シェアスペ</p>
+                  <p> 029【シェアスペ</p>
+                  <p> 029【シェアスペ</p>
                    </div> 
                 </div>
               </div>
             </div>
+
           </div>
         </div>
         @endforeach

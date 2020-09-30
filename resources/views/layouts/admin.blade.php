@@ -25,6 +25,8 @@
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
         {{-- この章の後半で作成するCSSを読み込みます --}}
         <link href="{{ secure_asset('css/admin.css') }}" rel="stylesheet">
+        <!--googleアイコンの導入-->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
     <body>
         <div id="app">
@@ -40,9 +42,11 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <!-- Left Side Of Navbar -->
+                        @guest
                         <ul class="navbar-nav mr-100px">
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('会員登録') }}</a></li>
                         </ul>
+                        @endguest
                         
                         <ul class="navbar-nav mr-100px">
                             <li><a class="nav-link" href="{{ action('Admin\DevelopController@add') }}">{{ __('新規作成') }}</a></li>

@@ -18,4 +18,5 @@ class Comment extends Model
     // return $this->belongsTo(Develop::class);
     return $this->belongsTo('App\Develop');
   }
+  
 }
