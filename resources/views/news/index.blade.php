@@ -59,11 +59,11 @@
                     data-toggle="collapse"
                     data-target="#example-{{$loop->index}}"
                     aria-expand="false"
-                    aria-controls="example-{{$loop->index}}">コメントを読む({{ $comments->count() }})>></button>
+                    aria-controls="example-{{$loop->index}}">コメントを読む({{ $post->comments->count() }})>></button>
                 <div class="collapse py-3" id="example-{{$loop->index}}">
                    <div class="card card-body"> 
-                    @foreach($comments as $comment)
-                            @if ($comment->develop_id==$post->id)
+                    @foreach($post->comments as $comment)
+                            
                                 <div class="row">
                                     <div class="col-md-12">
                                         {{ str_limit($comment->body, 1500) }}
@@ -71,7 +71,7 @@
                                     </div>
                                 </div>
                                 <!--<hr color="#c0c0c0">-->
-                            @endif
+                            
                     @endforeach
                    </div> 
                 </div>
