@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Develop;
 use App\Like;
+use Storage;
 
 use App\History;
 
@@ -25,11 +26,13 @@ class DevelopController extends Controller
 
       $develop = new Develop;
       $form = $request->all();
-
+      // dd($form['image']);
       // フォームから画像が送信されてきたら、保存して、$news->image_path に画像のパスを保存する
       if (isset($form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $develop->image_path = basename($path);
+        $image = $request->file('image');
+        // dd($image);
+        $path = Storage::disk('s3')->putfile('/newapp-giichi',$image,'public');
+        $develop->image_path = Storage::disk('s3')->url($path);
       } else {
           $develop->image_path = null;
       }
@@ -79,8 +82,8 @@ class DevelopController extends Controller
       // 送信されてきたフォームデータを格納する
       $develop_form = $request->all();
       if (isset($develop_form['image'])) {
-        $path = $request->file('image')->store('public/image');
-        $develop->image_path = basename($path);
+        $path = Storage::disk('s3')->putFile('/',$form['image'],'public');
+        $news->image_path = Storage::disk('s3')->url($path);
         unset($develop_form['image']);
       } elseif (isset($request->remove)) {
         $develop->image_path = null;

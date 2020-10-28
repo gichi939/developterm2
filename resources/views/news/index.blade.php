@@ -8,7 +8,7 @@
         <div class="row text-center py-3">
             <div class="col-md-12 col-12">
                 @if ($post->image_path)
-                    <img src="{{ asset('storage/image/' . $post->image_path) }}"style="width: 100%;" class="rounded">
+                    <img src="{{ $post->image_path }}" style="width: 100%;" class="rounded">
                 @else
                     <img src="https://www.shoshinsha-design.com/wp-content/uploads/2016/10/%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88-2016-10-05-0.41.12.png"style="width: 100%;" class="rounded">
                 @endif
